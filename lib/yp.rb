@@ -16,12 +16,12 @@ module Yp
     end
 
     def create_signing_hash
-      digest(serialize_params(@params) + @signature_key)
+      self.class.digest(self.class.serialize_params(@params) + @signature_key)
     end
 
     class << self
       def digest(str_params)
-        Digest::SHA512.digest str_params
+        Digest::SHA512.hexdigest str_params
       end
 
       def serialize_params(params)

@@ -51,4 +51,36 @@ describe Yp::TransactionRequest do
 
     end
   end
+
+  describe 'digest' do
+    it 'should return the SHA-512 of an empty string' do
+      expect(Yp::TransactionRequest.digest(''))
+          .to eq('cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d3' +
+              '6ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327' +
+              'af927da3e')
+    end
+  end
+
+  describe 'create_signing_hash' do
+
+    it 'should return a hash of the serialized keys with the signature' +
+        ' appended' do
+
+      expect(Yp::TransactionRequest.new(
+          'signature',
+          key: 'value 123',
+          a_key: 'value 456'
+      ).create_signing_hash)
+          .to eq('0adba88d7eaff7ecf7e04a891823edb5684b290f66d813dfdff09ba9f2' +
+              '48897f01c5bde63fdf705e7dee69238f65260dd1de73d4ac1c31dafd4150a' +
+              '543c7e987')
+
+      expect(Yp::TransactionRequest.new('DontTellAnyone', TRANSACTION_FIELDS)
+                 .create_signing_hash)
+          .to eq('4df549856fb4e35539c024a45a066392e13b74a8f3c724884f17dd69419'+
+              'f29dbb3bcde5ef467f14e80778b605893d27e84527bfad44de0ea429db4234'+
+              '68e5ee8')
+
+    end
+  end
 end
