@@ -1,6 +1,8 @@
 module Yp
   class Base
 
+    attr_reader :params
+
     def initialize(signature_key, **params)
       @params = params.merge default_params
       @signature_key = signature_key

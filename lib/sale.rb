@@ -1,3 +1,11 @@
+module Yp
+  class Sale < Base
 
-class Sale
+    protected
+
+    def default_params
+      { action: 'SALE' }
+    end
+
+  end
 end
