@@ -30,7 +30,5 @@ FIELDS = {
     orderRef:  'Test purchase'
 }
 
-URL = 'https://gateway.yorkshirepayments.com/direct/'
-
 require "irb"
 IRB.start

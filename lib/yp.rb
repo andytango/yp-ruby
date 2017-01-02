@@ -2,9 +2,12 @@ require 'version'
 require 'rest-client'
 require 'digest'
 require 'erb'
-
+require 'cgi'
 
 module Yp
+
+  URL = 'https://gateway.yorkshirepayments.com/direct/'
+
   class Base
     def initialize(signature_key, **params)
       @params = params
@@ -17,6 +20,10 @@ module Yp
 
     def create_signing_hash
       self.class.digest(self.class.serialize_params(@params) + @signature_key)
+    end
+
+    def send
+      RestClient.post(URL, body) { |response| yield(CGI::parse response) }
     end
 
     class << self
