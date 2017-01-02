@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "yp/ruby"
+require "yp"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -9,6 +9,28 @@ require "yp/ruby"
 # (If you use this, don't forget to add pry to your Gemfile!)
 # require "pry"
 # Pry.start
+
+KEY = 'Engine0Milk12Next'
+
+FIELDS = {
+    merchantID: '101381',
+    action: 'SALE',
+    type: 1,
+    countryCode: 826,
+    currencyCode:  826,
+    amount:  1001,
+    cardNumber:  '4012001037141112',
+    cardExpiryMonth:  12,
+    cardExpiryYear:  15,
+    cardCVV:  '083',
+    customerName:  'Yorkshire Payments',
+    customerEmail:  'support@yorkshirepayments.com',
+    customerAddress:  '16 Test Street',
+    customerPostCode:  'TE15 5ST',
+    orderRef:  'Test purchase'
+}
+
+URL = 'https://gateway.yorkshirepayments.com/direct/'
 
 require "irb"
 IRB.start
