@@ -6,6 +6,7 @@ require 'cgi'
 require 'base'
 
 require 'sale'
+require 'factory'
 
 module Yp
   URL = 'https://gateway.yorkshirepayments.com/direct/'
