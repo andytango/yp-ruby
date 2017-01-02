@@ -5,7 +5,7 @@ require 'erb'
 
 
 module Yp
-  class TransactionRequest
+  class Base
     def initialize(signature_key, **params)
       @params = params
       @signature_key = signature_key
@@ -43,11 +43,4 @@ module Yp
       end
     end
   end
-
-  class Client
-    def initialize
-
-    end
-  end
-
 end

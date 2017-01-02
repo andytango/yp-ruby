@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Yp::TransactionRequest do
+describe Yp::Base do
 
   TRANSACTION = {
       merchantID: '101380',
@@ -21,23 +21,23 @@ describe Yp::TransactionRequest do
 
   describe 'serialize_params' do
     context 'should return an empty string if no params' do
-      Then { Yp::TransactionRequest.serialize_params({}) == '' }
+      Then { Yp::Base.serialize_params({}) == '' }
     end
 
     context 'url-encoded string for a single param, sorted' do
       Given(:params) { { key: 'value 123' } }
-      When(:result)  { Yp::TransactionRequest.serialize_params(params) }
+      When(:result)  { Yp::Base.serialize_params(params) }
       Then { result == 'key=value+123' }
     end
 
     context 'multiple properties, sorted alphabetically by key' do
       Given(:params) { { key: 'value 123', a_key: 'value 456' } }
-      When(:result)  { Yp::TransactionRequest.serialize_params(params) }
+      When(:result)  { Yp::Base.serialize_params(params) }
       Then { result == 'a_key=value+456&key=value+123' }
     end
 
     context 'transaction' do
-      When(:result) { Yp::TransactionRequest.serialize_params(TRANSACTION) }
+      When(:result) { Yp::Base.serialize_params(TRANSACTION) }
       Then do
         result ==
             'action=SALE&amount=2691&cardExpiryDate=1213&cardNumber=4929+42' +
@@ -50,7 +50,7 @@ describe Yp::TransactionRequest do
 
   describe 'sha-512 digest' do
     context 'empty string' do
-      When(:result) { Yp::TransactionRequest.digest('') }
+      When(:result) { Yp::Base.digest('') }
       Then do
         result ==
             'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9c' +
@@ -63,9 +63,7 @@ describe Yp::TransactionRequest do
   describe 'create_signing_hash' do
 
     context 'transaction with signature' do
-      Given(:transaction) do
-        Yp::TransactionRequest.new('DontTellAnyone', TRANSACTION)
-      end
+      Given(:transaction) { Yp::Base.new('DontTellAnyone', TRANSACTION) }
       When(:result) { transaction.create_signing_hash }
       Then do
         result ==
