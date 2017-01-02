@@ -3,17 +3,29 @@ require "spec_helper"
 describe Yp::Base do
 
   TRANSACTION = {
-      merchantID: '101380',
+      merchantID: '101381',
       action: 'SALE',
-      type: '1',
-      currencyCode: '826',
-      countryCode: '826',
-      amount: '2691',
-      transactionUnique: '55f025addd3c2',
-      orderRef: 'Signature Test',
-      cardNumber: '4929 4212 3460 0821',
-      cardExpiryDate: '1213'
+      type: 1,
+      countryCode: 826,
+      currencyCode:  826,
+      amount:  1001,
+      cardNumber:  '4012001037141112',
+      cardExpiryMonth:  12,
+      cardExpiryYear:  15,
+      cardCVV:  '083',
+      customerName:  'Yorkshire Payments',
+      customerEmail:  'support@yorkshirepayments.com',
+      customerAddress:  '16 Test Street',
+      customerPostCode:  'TE15 5ST',
+      orderRef:  'Test purchase'
   }
+
+  SERIALIZED_TRANSACTION =
+      'action=SALE&amount=1001&cardCVV=083&cardExpiryMonth=12&cardExpiryYear' +
+      '=15&cardNumber=4012001037141112&countryCode=826&currencyCode=826&cust' +
+      'omerAddress=16+Test+Street&customerEmail=support%40yorkshirepayments.' +
+      'com&customerName=Yorkshire+Payments&customerPostCode=TE15+5ST&merchan' +
+      'tID=101381&orderRef=Test+purchase&type=1'
 
   context 'version number' do
     Then { !Yp::VERSION.nil? }
@@ -38,13 +50,7 @@ describe Yp::Base do
 
     context 'transaction' do
       When(:result) { Yp::Base.serialize_params(TRANSACTION) }
-      Then do
-        result ==
-            'action=SALE&amount=2691&cardExpiryDate=1213&cardNumber=4929+42' +
-            '12+3460+0821&countryCode=826&currencyCode=826&merchantID=10138' +
-            '0&orderRef=Signature+Test&transactionUnique=55f025addd3c2&type' +
-            '=1'
-      end
+      Then { result == SERIALIZED_TRANSACTION }
     end
   end
 
@@ -67,10 +73,17 @@ describe Yp::Base do
       When(:result) { transaction.create_signing_hash }
       Then do
         result ==
-            '4df549856fb4e35539c024a45a066392e13b74a8f3c724884f17dd69419f29d' +
-            'bb3bcde5ef467f14e80778b605893d27e84527bfad44de0ea429db423468e5e' +
-            'e8'
+            '8876a6eeb2066d7e487d8e807b4ab0151f3022b3c8c69172fbabab0e150251d' +
+            '604aaf3ca795545726d4fd40d1d839fc56d682b8ab2159acabac01a14348fc2' +
+            'c8'
       end
     end
+  end
+
+  describe 'send', vcr: { :cassette_name => 'example_transaction_docs' } do
+    Given(:transaction) { Yp::Base.new('Engine0Milk12Next', TRANSACTION) }
+    When(:result) { transaction.send }
+    Then { result[:state] == 'captured' }
+    And { result[:merchantID] == TRANSACTION[:merchantID] }
   end
 end

@@ -2,7 +2,7 @@ module Yp
   class Base
 
     def initialize(signature_key, **params)
-      @params = params
+      @params = params.merge default_params
       @signature_key = signature_key
     end
 
@@ -15,7 +15,19 @@ module Yp
     end
 
     def send
-      RestClient.post(URL, body) { |response| yield(CGI::parse response) }
+      if block_given?
+        RestClient.post(URL, body) do |response|
+          yield(self.class.parse response)
+        end
+      else
+        self.class.parse(RestClient.post(URL, body))
+      end
+    end
+
+    protected
+
+    def default_params
+      {}
     end
 
     class << self
@@ -26,6 +38,10 @@ module Yp
 
       def serialize_params(params)
         uri_string_from_hash(params)
+      end
+
+      def parse(response)
+        ruby_hash_from_response(CGI::parse(response))
       end
 
       private
@@ -40,6 +56,12 @@ module Yp
 
       def encode_url_component(key)
         ERB::Util::url_encode(key).gsub(/%20/, '+')
+      end
+
+      def ruby_hash_from_response(hash)
+        hash.reduce({}) do |memo, (key, value)|
+          memo.merge({key.to_sym => value.first})
+        end
       end
 
     end
