@@ -1,10 +1,15 @@
 module Yp
   class Base
+    TYPE = {
+        ecom: 1,
+        moto: 2,
+        ca: 9
+    }.freeze
 
     attr_reader :params
 
-    def initialize(signature_key, **params)
-      @params = params.merge default_params
+    def initialize(signature_key, type: :ecom, **params)
+      @params = params.merge(default_params).merge(transaction_type(type))
       @signature_key = signature_key
     end
 
@@ -30,6 +35,10 @@ module Yp
 
     def default_params
       {}
+    end
+
+    def transaction_type(type)
+      { type: TYPE[type] }
     end
 
     class << self
