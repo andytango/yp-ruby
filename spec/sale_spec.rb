@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe Yp::Sale do
 
-  TRANSACTION = {
+  Given(:params) do
+    {
       merchantID: '101381',
       countryCode: 826,
       currencyCode:  826,
@@ -15,7 +16,8 @@ describe Yp::Sale do
       customerAddress:  '16 Test Street',
       customerPostCode:  'TE15 5ST',
       orderRef:  'Test purchase'
-  }
+    }
+  end
 
   context 'has the correct action and type value' do
     Given(:sale) { Yp::Sale.new('signature', key: 'value') }
@@ -23,7 +25,7 @@ describe Yp::Sale do
   end
 
   describe 'succeeds', vcr: { :cassette_name => 'sale_success' } do
-    Given(:transaction) { TRANSACTION.merge({ amount: 101 }) }
+    Given(:transaction) { params.merge({ amount: 101 }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
     When(:result) { sale.send }
     Then { result[:state] == 'captured' }
@@ -31,7 +33,7 @@ describe Yp::Sale do
   end
 
   describe 'card referred', vcr: { :cassette_name => 'sale_card_referred' } do
-    Given(:transaction) { TRANSACTION.merge({ amount: 5000 }) }
+    Given(:transaction) { params.merge({ amount: 5000 }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
     When(:result) { sale.send }
     Then { result[:state] == 'referred' }
@@ -39,7 +41,7 @@ describe Yp::Sale do
   end
 
   describe 'card declined', vcr: { :cassette_name => 'sale_card_declined' } do
-    Given(:transaction) { TRANSACTION.merge({ amount: 10000 }) }
+    Given(:transaction) { params.merge({ amount: 10000 }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
     When(:result) { sale.send }
     Then { result[:state] == 'declined' }
@@ -48,7 +50,7 @@ describe Yp::Sale do
 
   describe 'card declined keep',
            vcr: { :cassette_name => 'sale_card_declined_keep' } do
-    Given(:transaction) { TRANSACTION.merge({ amount: 15000 }) }
+    Given(:transaction) { params.merge({ amount: 15000 }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
     When(:result) { sale.send }
     Then { result[:state] == 'declined' }

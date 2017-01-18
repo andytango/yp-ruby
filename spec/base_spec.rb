@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe Yp::Base do
 
-  TRANSACTION = {
+  Given(:params) do
+    {
       merchantID: '101381',
       action: 'SALE',
       type: 1,
@@ -18,14 +19,16 @@ describe Yp::Base do
       customerAddress:  '16 Test Street',
       customerPostCode:  'TE15 5ST',
       orderRef:  'Test purchase'
-  }
+    }
+  end
 
-  SERIALIZED_TRANSACTION =
+  Given(:serialized_transaction) do
       'action=SALE&amount=1001&cardCVV=083&cardExpiryMonth=12&cardExpiryYear' +
       '=15&cardNumber=4012001037141112&countryCode=826&currencyCode=826&cust' +
       'omerAddress=16+Test+Street&customerEmail=support%40yorkshirepayments.' +
       'com&customerName=Yorkshire+Payments&customerPostCode=TE15+5ST&merchan' +
       'tID=101381&orderRef=Test+purchase&type=1'
+  end
 
   context 'version number' do
     Then { !Yp::VERSION.nil? }
@@ -49,8 +52,8 @@ describe Yp::Base do
     end
 
     context 'transaction' do
-      When(:result) { Yp::Base.serialize_params(TRANSACTION) }
-      Then { result == SERIALIZED_TRANSACTION }
+      When(:result) { Yp::Base.serialize_params(params) }
+      Then { result == serialized_transaction }
     end
   end
 
@@ -69,7 +72,7 @@ describe Yp::Base do
   describe 'create_signing_hash' do
 
     context 'transaction with signature' do
-      Given(:transaction) { Yp::Base.new('DontTellAnyone', TRANSACTION) }
+      Given(:transaction) { Yp::Base.new('DontTellAnyone', params) }
       When(:result) { transaction.create_signing_hash }
       Then do
         result ==
@@ -81,9 +84,9 @@ describe Yp::Base do
   end
 
   describe 'send', vcr: { :cassette_name => 'example_transaction_docs' } do
-    Given(:transaction) { Yp::Base.new('Engine0Milk12Next', TRANSACTION) }
+    Given(:transaction) { Yp::Base.new('Engine0Milk12Next', params) }
     When(:result) { transaction.send }
     Then { result[:state] == 'captured' }
-    And { result[:merchantID] == TRANSACTION[:merchantID] }
+    And { result[:merchantID] == params[:merchantID] }
   end
 end
