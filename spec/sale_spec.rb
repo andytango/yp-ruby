@@ -4,7 +4,6 @@ describe Yp::Sale do
 
   TRANSACTION = {
       merchantID: '101381',
-      type: 1,
       countryCode: 826,
       currencyCode:  826,
       cardNumber:  '4012001037141112',
@@ -18,9 +17,9 @@ describe Yp::Sale do
       orderRef:  'Test purchase'
   }
 
-  context 'has the correct action value' do
+  context 'has the correct action and type value' do
     Given(:sale) { Yp::Sale.new('signature', key: 'value') }
-    Then { sale.params == { action: 'SALE', key: 'value' } }
+    Then { sale.params == { action: 'SALE', type: 1, key: 'value' } }
   end
 
   describe 'succeeds', vcr: { :cassette_name => 'sale_success' } do

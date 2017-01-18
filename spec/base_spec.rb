@@ -73,9 +73,9 @@ describe Yp::Base do
       When(:result) { transaction.create_signing_hash }
       Then do
         result ==
-            '8876a6eeb2066d7e487d8e807b4ab0151f3022b3c8c69172fbabab0e150251d' +
-            '604aaf3ca795545726d4fd40d1d839fc56d682b8ab2159acabac01a14348fc2' +
-            'c8'
+            '73b396c7e718ea5fb477f8c14ab04303d067e922e004ed93db9e5827f25b99c' +
+            'fbbf1241cc85e125ed04987f96b628fabcb702b67e113114ad978b34e0cacfa' +
+            '37'
       end
     end
   end

@@ -7,7 +7,7 @@ describe Yp::Factory do
       Yp::Factory.new(merchant_id: 101381, signature_key: 'secret')
     end
     When(:params) { factory.sale({}).params }
-    Then { params == { merchantID: 101381, action: 'SALE' } }
+    Then { params == { merchantID: 101381, action: 'SALE', type: 1 } }
   end
 
   context 'with password' do
@@ -18,7 +18,12 @@ describe Yp::Factory do
     end
     When(:params) { factory.sale({}).params }
     Then do
-      params == { merchantID: 101381, action: 'SALE', merchantPwd: 'pass' }
+      params == {
+          merchantID: 101381,
+          action: 'SALE',
+          merchantPwd: 'pass',
+          type:1
+      }
     end
   end
 
