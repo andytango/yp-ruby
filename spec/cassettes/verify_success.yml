@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://gateway.yorkshirepayments.com/direct/
+    body:
+      encoding: UTF-8
+      string: merchantID=101381&countryCode=826&currencyCode=826&cardNumber=4012001037141112&cardExpiryMonth=12&cardExpiryYear=15&cardCVV=083&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=0&action=VERIFY&type=1&signature=6df38ed972260146fa70bfcd856360dd680bc5928a6ed5f9ab56e72e57e53d87de2f000cf9608dd37f7a8c9d4bbc3ea03deeb139a8715ef3ab107693512de1ee
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (linux-gnu x86_64) ruby/2.3.3p222
+      Content-Length:
+      - '454'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - gateway.yorkshirepayments.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 18 Jan 2017 20:38:19 GMT
+      Server:
+      - Apache
+      Cache-Control:
+      - max-age=600
+      Expires:
+      - Wed, 18 Jan 2017 20:48:19 GMT
+      Content-Length:
+      - '1637'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=0&action=VERIFY&type=1&customerPostcode=TE15+5ST&requestID=587fd23bd90cf&responseCode=0&responseMessage=ACCOUNT+VALID&state=verified&requestMerchantID=101381&processMerchantID=101381&xref=17011820HT38HZ19HS94BPJ&paymentMethod=card&cardExpiryDate=1215&authorisationCode=731410&transactionID=14037314&responseStatus=0&timestamp=2017-01-18+20%3A38%3A19&amountReceived=0&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&signature=cee5d7645989c8be38709f69305fa866c7104c6379486432ee0765605ad376aa2a333f8599d33d0790956fa8df0f32e164e2e69418b2768b8dedab040186f290
+    http_version: 
+  recorded_at: Wed, 18 Jan 2017 20:38:18 GMT
+recorded_with: VCR 3.0.3

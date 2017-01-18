@@ -6,6 +6,7 @@ require 'cgi'
 require 'base'
 
 require 'sale'
+require 'verify'
 require 'factory'
 
 module Yp
