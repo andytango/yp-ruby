@@ -7,6 +7,7 @@ require 'base'
 
 require 'sale'
 require 'verify'
+require 'preauth'
 require 'factory'
 
 module Yp
