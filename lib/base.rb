@@ -1,3 +1,5 @@
+require 'transaction_logger'
+
 module Yp
   class Base
     TYPE = {
@@ -16,7 +18,7 @@ module Yp
     def body
       @params.clone.tap do |params|
         params[:signature] = create_signing_hash
-        Yp.logger.info "[YP] Sending transaction with params #{params.to_s}"
+        TransactionLogger.log_request(params)
       end
     end
 
@@ -69,7 +71,7 @@ module Yp
 
       def parse(response)
         ruby_hash_from_response(CGI::parse(response)).tap do |parsed|
-          Yp.logger.info "[YP] Response received with params #{parsed}"
+          TransactionLogger.log_response(parsed)
         end
       end
 
