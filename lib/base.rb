@@ -14,7 +14,10 @@ module Yp
     end
 
     def body
-      @params.clone.tap { |params|  params[:signature] = create_signing_hash }
+      @params.clone.tap do |params|
+        params[:signature] = create_signing_hash
+        Yp.logger.info "[YP] Sending transaction with params #{params.to_s}"
+      end
     end
 
     def create_signing_hash
@@ -65,7 +68,9 @@ module Yp
       end
 
       def parse(response)
-        ruby_hash_from_response(CGI::parse(response))
+        ruby_hash_from_response(CGI::parse(response)).tap do |parsed|
+          Yp.logger.info "[YP] Response received with params #{parsed}"
+        end
       end
 
       private
