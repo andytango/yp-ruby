@@ -1,5 +1,6 @@
 require 'transaction_logger'
 require 'signing_hash_creator'
+require 'response'
 
 module Yp
   class Base
@@ -19,10 +20,10 @@ module Yp
     def send
       if block_given?
         RestClient.post(URL, body) do |response|
-          yield(self.class.parse response)
+          yield(parse_and_validate response)
         end
       else
-        self.class.parse(RestClient.post(URL, body))
+        parse_and_validate(RestClient.post(URL, body))
       end
     end
 
@@ -60,22 +61,9 @@ module Yp
       SigningHashCreator.new(@params, @signature_key).create
     end
 
-    class << self
-
-      def parse(response)
-        ruby_hash_from_response(CGI::parse(response)).tap do |parsed|
-          TransactionLogger.log_response(parsed)
-        end
-      end
-
-      private
-
-      def ruby_hash_from_response(hash)
-        hash.reduce({}) do |memo, (key, value)|
-          memo.merge({key.to_sym => value.first})
-        end
-      end
-
+    def parse_and_validate(response)
+      Response.new(response, TransactionLogger).parse_and_validate
     end
+
   end
 end
