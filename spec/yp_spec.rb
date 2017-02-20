@@ -3,7 +3,6 @@ require "spec_helper"
 describe Yp do
 
   context 'has a nil logger by default' do
-    When { puts Yp.logger.class }
     Then { Yp.logger.class == Yp::NilLogger }
   end
 
