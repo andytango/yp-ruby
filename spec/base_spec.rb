@@ -34,55 +34,6 @@ describe Yp::Base do
     Then { !Yp::VERSION.nil? }
   end
 
-  describe 'serialize_params' do
-    context 'should return an empty string if no params' do
-      Then { Yp::Base.serialize_params({}) == '' }
-    end
-
-    context 'url-encoded string for a single param, sorted' do
-      Given(:params) { { key: 'value 123' } }
-      When(:result)  { Yp::Base.serialize_params(params) }
-      Then { result == 'key=value+123' }
-    end
-
-    context 'multiple properties, sorted alphabetically by key' do
-      Given(:params) { { key: 'value 123', a_key: 'value 456' } }
-      When(:result)  { Yp::Base.serialize_params(params) }
-      Then { result == 'a_key=value+456&key=value+123' }
-    end
-
-    context 'transaction' do
-      When(:result) { Yp::Base.serialize_params(params) }
-      Then { result == serialized_transaction }
-    end
-  end
-
-  describe 'sha-512 digest' do
-    context 'empty string' do
-      When(:result) { Yp::Base.digest('') }
-      Then do
-        result ==
-            'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9c' +
-            'e47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da' +
-            '3e'
-      end
-    end
-  end
-
-  describe 'create_signing_hash' do
-
-    context 'transaction with signature' do
-      Given(:transaction) { Yp::Base.new('DontTellAnyone', params) }
-      When(:result) { transaction.create_signing_hash }
-      Then do
-        result ==
-            '73b396c7e718ea5fb477f8c14ab04303d067e922e004ed93db9e5827f25b99c' +
-            'fbbf1241cc85e125ed04987f96b628fabcb702b67e113114ad978b34e0cacfa' +
-            '37'
-      end
-    end
-  end
-
   describe 'send', vcr: { :cassette_name => 'example_transaction_docs' } do
     Given(:transaction) { Yp::Base.new('Engine0Milk12Next', params) }
     When(:result) { transaction.send }
