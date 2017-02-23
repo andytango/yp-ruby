@@ -62,7 +62,9 @@ module Yp
     end
 
     def parse_and_validate(response)
-      Response.new(response, TransactionLogger).parse_and_validate
+      Response
+          .new(@signature_key, response, TransactionLogger)
+          .parse_and_validate
     end
 
   end
