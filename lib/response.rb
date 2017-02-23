@@ -3,7 +3,8 @@ require 'response/validator'
 
 module Yp
   class Response
-    def initialize(params, logger)
+    def initialize(signature, params, logger)
+      @signature = signature
       @params = params
       @logger = logger
     end
@@ -14,16 +15,16 @@ module Yp
 
     private
 
+    def valid?
+      Validator.new(parsed, @signature).valid?
+    end
+
     def parsed
       @parsed ||= parse_params
     end
 
     def parse_params
       Parser.new(@params).parse.tap { |parsed| @logger.log_response(parsed) }
-    end
-
-    def valid?
-      Validator.new(self).valid?
     end
 
   end

@@ -3,19 +3,34 @@ require 'signing_hash_creator'
 module Yp
   class Response
     class Validator
+      class InvalidSignatureError < StandardError; end
+      class MissingSignatureError < StandardError; end
 
-      def initialize(response)
-        @response = response
+      def initialize(params, signature)
+        @params = params
+        @signature = signature
       end
 
       def valid?
-        has_valid_signing_key?
+        has_valid_signing_key? || (raise InvalidSignatureError)
       end
 
       private
 
       def has_valid_signing_key?
-        true
+        their_signing_key == our_signing_key
+      end
+
+      def their_signing_key
+        @params[:signature] || (raise MissingSignatureError)
+      end
+
+      def our_signing_key
+        SigningHashCreator.new(signing_key_params, @signature).create
+      end
+
+      def signing_key_params
+        @params.reject { |k, _| k == :signature }
       end
 
     end
