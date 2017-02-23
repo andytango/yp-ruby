@@ -1,3 +1,6 @@
+require 'response/parser'
+require 'response/validator'
+
 module Yp
   class Response
     def initialize(params, logger)
@@ -11,28 +14,16 @@ module Yp
 
     private
 
-    def valid?
-      true
-    end
-
     def parsed
       @parsed ||= parse_params
     end
 
     def parse_params
-      ruby_hash_from_response(CGI::parse(@params)).tap do |parsed|
-        logger.log_response(parsed)
-      end
+      Parser.new(@params).parse.tap { |parsed| @logger.log_response(parsed) }
     end
 
-    def ruby_hash_from_response(hash)
-      hash.reduce({}) do |memo, (key, value)|
-        memo.merge({key.to_sym => value.first})
-      end
-    end
-
-    def logger
-      @logger
+    def valid?
+      Validator.new(self).valid?
     end
 
   end
