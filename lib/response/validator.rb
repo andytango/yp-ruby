@@ -7,6 +7,8 @@ module Yp
 
       class InvalidSignatureError < StandardError; end
       class MissingSignatureError < StandardError; end
+      class MissingResponseCodeError < StandardError; end
+      class MissingResponseMessageError < StandardError; end
 
       def initialize(params, signature)
         @params = params
@@ -15,6 +17,7 @@ module Yp
 
       def validate!
         SigningKey.new(@params, @signature).validate!
+        Gateway.new(@params).validate!
       end
 
     end
