@@ -28,7 +28,7 @@ module Yp
         end
 
         def find_response_code
-          @params[:responseStatus] || (raise MissingResponseCodeError)
+          @params[:responseCode] || (raise MissingResponseCodeError)
         end
 
         def response_message

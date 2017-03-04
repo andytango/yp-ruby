@@ -11,7 +11,7 @@ describe Yp::Response::Validator::Gateway do
   end
 
   context 'with missing response message and request error response code' do
-    Given(:params) { { responseStatus: '6' } }
+    Given(:params) { { responseCode: '6' } }
     Given(:error) { Yp::Response::MissingResponseMessageError }
     Then { expect { validator.validate! }.to raise_error(error) }
   end
