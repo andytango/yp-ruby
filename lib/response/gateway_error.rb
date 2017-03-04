@@ -63,7 +63,6 @@ module Yp
     end
 
     class MissingFieldError < GatewayError; end
-
     class InvalidFieldError < GatewayError; end
   end
 end
