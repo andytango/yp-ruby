@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://gateway.yorkshirepayments.com/direct/
+    body:
+      encoding: UTF-8
+      string: merchantID=101381&action=SALE&countryCode=826&currencyCode=826&amount=4992&cardExpiryMonth=12&cardExpiryYear=15&cardCVV=083&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&type=1&signature=3abcf28ef546e908ebfb2e356e4bcba285a85a67b9ede578de349e75259a901e61f2b4879a9092acabbb4f2f3c5fab9870568aee499f4a70cba0de70cb48702a
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.0 (linux-gnu x86_64) ruby/2.3.3p222
+      Content-Length:
+      - '427'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - gateway.yorkshirepayments.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 Mar 2017 13:36:44 GMT
+      Server:
+      - Apache
+      Cache-Control:
+      - max-age=600
+      Expires:
+      - Sat, 04 Mar 2017 13:46:44 GMT
+      Content-Length:
+      - '1269'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: responseCode=66058&responseMessage=ERROR+CODE+%28RC_MISSING_CARDNUMBER%29&responseStatus=2&merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&action=SALE&countryCode=826&currencyCode=826&amount=4992&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&type=1&customerPostcode=TE15+5ST&requestID=58bac2ed14eed&state=finished&requestMerchantID=101381&processMerchantID=101381&paymentMethod=card&currencyExponent=2&xref=17030413DW36ZL45JJ14DGY&transactionID=15429509&timestamp=2017-03-04+13%3A36%3A45&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&signature=6d712f23753289bd168ec6cd9bc065585b461018e1daba6c4371011941aa43fe5af6277294a04cd59fcdc3b1390b6303d06db0d355ec2e014486ab68de2ce1f0
+    http_version: 
+  recorded_at: Sat, 04 Mar 2017 13:36:42 GMT
+recorded_with: VCR 3.0.3

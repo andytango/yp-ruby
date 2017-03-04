@@ -34,9 +34,40 @@ describe Yp::Base do
   end
 
   describe 'send', vcr: { :cassette_name => 'example_transaction_docs' } do
-    Given(:transaction) { Yp::Base.new('Engine0Milk12Next', params) }
-    When(:result) { transaction.send! }
-    Then { result[:state] == 'captured' }
-    And { result[:merchantID] == params[:merchantID] }
+
+    context 'valid params' do
+      Given(:transaction) { Yp::Base.new('Engine0Milk12Next', params) }
+      When(:result) { transaction.send! }
+      Then { result[:state] == 'captured' }
+      And { result[:merchantID] == params[:merchantID] }
+    end
+
+    context 'invalid params' do
+      Given(:invalid) { params.clone }
+      When(:transaction) { Yp::Base.new('Engine0Milk12Next', invalid) }
+
+      context 'missing mid', vcr: { :cassette_name => 'missing_mid' } do
+        Given { invalid.delete(:merchantID) }
+        Given(:error) { Yp::Response::MissingSignatureError }
+        Then { expect { transaction.send! }.to raise_error(error) }
+      end
+
+      context 'missing card number',
+          vcr: { :cassette_name => 'missing_card_number' } do
+
+        Given { invalid.delete(:cardNumber) }
+        Given(:error) { Yp::Response::MissingFieldError }
+        Then { expect { transaction.send! }.to raise_error(error) }
+      end
+
+      context 'invalid card number',
+          vcr: { :cassette_name => 'invalid_card_number' } do
+
+        Given { invalid[:cardNumber] = '123' }
+        Given(:error) { Yp::Response::InvalidFieldError }
+        Then { expect { transaction.send! }.to raise_error(error) }
+      end
+
+    end
   end
 end
