@@ -5,7 +5,7 @@ http_interactions:
     uri: https://gateway.yorkshirepayments.com/direct/
     body:
       encoding: UTF-8
-      string: merchantID=101381&type=1&countryCode=826&currencyCode=826&cardNumber=4012001037141112&cardExpiryMonth=12&cardExpiryYear=15&cardCVV=083&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=101&action=SALE&signature=035bcd40f00911380610aef18a01043438e07d89dd56f84c5d691980118664c5fff8afa1dbde72eb6a89663b36bc8672ee04f09644b9c046717b5fe2d5b397ee
+      string: merchantID=101381&countryCode=826&currencyCode=826&cardNumber=4012001037141112&cardExpiryMonth=12&cardExpiryYear=15&cardCVV=083&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=101&action=SALE&type=1&signature=035bcd40f00911380610aef18a01043438e07d89dd56f84c5d691980118664c5fff8afa1dbde72eb6a89663b36bc8672ee04f09644b9c046717b5fe2d5b397ee
     headers:
       Accept:
       - "*/*"
@@ -25,22 +25,22 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 07 Jan 2017 08:39:56 GMT
+      - Sat, 04 Mar 2017 11:31:53 GMT
       Server:
       - Apache
       Cache-Control:
       - max-age=600
       Expires:
-      - Sat, 07 Jan 2017 08:49:56 GMT
+      - Sat, 04 Mar 2017 11:41:53 GMT
       Content-Length:
-      - '1773'
+      - '1811'
       Connection:
       - close
       Content-Type:
       - text/html; charset=UTF-8
     body:
       encoding: UTF-8
-      string: merchantID=101381&threeDSEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&type=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=101&action=SALE&customerPostcode=TE15+5ST&requestID=5870a95c5817e&responseCode=0&responseMessage=AUTHCODE%3A214790&state=captured&requestMerchantID=101381&processMerchantID=101381&xref=17010708JX39WY56ND42KKF&paymentMethod=card&cardExpiryDate=1215&authorisationCode=214790&transactionID=13900591&responseStatus=0&timestamp=2017-01-07+08%3A39%3A56&amountReceived=101&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&notifyEmailResponseCode=0&notifyEmailResponseMessage=Email+successfully+queued&customerReceiptsResponseCode=0&customerReceiptsResponseMessage=Email+successfully+queued&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&signature=523c4c18b5488c2c0369da9c0ad9073c8aa2cbce3ca5384741e83bd29bab61d082fde46f16bb7084f7b3b29e118194b09db64e0912d42f7ee1bc5a3ba1035da9
+      string: merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=101&action=SALE&type=1&customerPostcode=TE15+5ST&requestID=58baa5a9da859&responseCode=0&responseMessage=AUTHCODE%3A836607&state=captured&requestMerchantID=101381&processMerchantID=101381&xref=17030411KV31CJ53HD95FXD&paymentMethod=card&cardExpiryDate=1215&authorisationCode=836607&transactionID=15428279&responseStatus=0&timestamp=2017-03-04+11%3A31%3A54&amountReceived=101&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&notifyEmailResponseCode=0&notifyEmailResponseMessage=Email+successfully+queued&customerReceiptsResponseCode=0&customerReceiptsResponseMessage=Email+successfully+queued&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&signature=0bb6454bb0ea9b84f144b987ce849714bffc365de11bc7e3af11b47f32b28fbfe9474bd977d986169a27e01cbcba1c09c2330f65b36ded9b8bf0d81acadb7819
     http_version: 
-  recorded_at: Sat, 07 Jan 2017 08:39:52 GMT
+  recorded_at: Sat, 04 Mar 2017 11:31:51 GMT
 recorded_with: VCR 3.0.3
