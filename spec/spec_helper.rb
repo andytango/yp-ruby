@@ -3,6 +3,7 @@ require "yp"
 require "vcr"
 require "rspec/given"
 require "webmock/rspec"
+require "yp_helper"
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'

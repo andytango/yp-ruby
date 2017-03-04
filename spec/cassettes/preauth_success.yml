@@ -25,13 +25,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 18 Jan 2017 20:57:37 GMT
+      - Sat, 04 Mar 2017 11:31:51 GMT
       Server:
       - Apache
       Cache-Control:
       - max-age=600
       Expires:
-      - Wed, 18 Jan 2017 21:07:37 GMT
+      - Sat, 04 Mar 2017 11:41:51 GMT
       Content-Length:
       - '1722'
       Connection:
@@ -40,7 +40,7 @@ http_interactions:
       - text/html; charset=UTF-8
     body:
       encoding: UTF-8
-      string: merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=101&action=PREAUTH&type=1&customerPostcode=TE15+5ST&requestID=587fd6c1ddaf3&responseCode=0&responseMessage=AUTHCODE%3A386401&state=reversed&requestMerchantID=101381&processMerchantID=101381&xref=17011820FW57XZ37VB96BPT&paymentMethod=card&cardExpiryDate=1215&authorisationCode=386401&cancelReason=Automatic+authorisation+void%2C+preauth+only&transactionID=14037498&responseStatus=0&timestamp=2017-01-18+20%3A57%3A38&amountReceived=0&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&authorisationVoid=1&signature=2f4f7359e02069e4c9c084f2e7f978688d8149c06aa6c25f5b80d437745eb1b8e937dfc7ea738a55916279b6927df9b99eb0495b188edb45ce4ca4c269c6f36e
+      string: merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=101&action=PREAUTH&type=1&customerPostcode=TE15+5ST&requestID=58baa5a8248d6&responseCode=0&responseMessage=AUTHCODE%3A184931&state=reversed&requestMerchantID=101381&processMerchantID=101381&xref=17030411GS31QF52JF20TCD&paymentMethod=card&cardExpiryDate=1215&authorisationCode=184931&cancelReason=Automatic+authorisation+void%2C+preauth+only&transactionID=15428275&responseStatus=0&timestamp=2017-03-04+11%3A31%3A52&amountReceived=0&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&authorisationVoid=1&signature=55fed81dbc153145640e7e9d9b96377f0b7c259b1d24acdec2c43980ea457ea3a70cd24b950878e6b2c2c499ba7323d8ec1d46ac1c36d47159ac5ad9b5d155e9
     http_version: 
-  recorded_at: Wed, 18 Jan 2017 20:57:36 GMT
+  recorded_at: Sat, 04 Mar 2017 11:31:49 GMT
 recorded_with: VCR 3.0.3

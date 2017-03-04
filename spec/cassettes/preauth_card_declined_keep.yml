@@ -25,13 +25,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 18 Jan 2017 20:57:57 GMT
+      - Sat, 04 Mar 2017 11:31:53 GMT
       Server:
       - Apache
       Cache-Control:
       - max-age=600
       Expires:
-      - Wed, 18 Jan 2017 21:07:57 GMT
+      - Sat, 04 Mar 2017 11:41:53 GMT
       Content-Length:
       - '1612'
       Connection:
@@ -40,7 +40,7 @@ http_interactions:
       - text/html; charset=UTF-8
     body:
       encoding: UTF-8
-      string: responseCode=4&responseMessage=CARD+DECLINED+-+KEEP+CARD&responseStatus=1&merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=15000&action=PREAUTH&type=1&customerPostcode=TE15+5ST&requestID=587fd6d55abb0&state=declined&requestMerchantID=101381&processMerchantID=101381&xref=17011820SW57GB57DV43BQN&paymentMethod=card&cardExpiryDate=1215&transactionID=14037502&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&timestamp=2017-01-18+20%3A57%3A57&signature=fab1a434e7e54fb585de6abad75a6c9a089fe605d79f3735f9c6df62a51c48024b4a5ea9f20130478a29c6386195f56877a11a0dfa4d0d81e792d31ca2c1d7d0
+      string: responseCode=4&responseMessage=CARD+DECLINED+-+KEEP+CARD&responseStatus=1&merchantID=101381&threeDSEnabled=N&caEnabled=N&rtsEnabled=N&cftEnabled=N&threeDSCheckPref=not+checked%2Cauthenticated&avscv2CheckEnabled=Y&cv2CheckPref=matched&addressCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&postcodeCheckPref=not+known%2Cnot+checked%2Cmatched%2Cnot+matched%2Cpartially+matched&cardCVVMandatory=Y&notifyEmail=lewis.parry%40yorkshirepayments.com&customerReceiptsRequired=Y&eReceiptsEnabled=N&eReceiptsStoreID=1&countryCode=826&currencyCode=826&cardExpiryMonth=12&cardExpiryYear=15&customerName=Yorkshire+Payments&customerEmail=support%40yorkshirepayments.com&customerAddress=16+Test+Street&customerPostCode=TE15+5ST&orderRef=Test+purchase&amount=15000&action=PREAUTH&type=1&customerPostcode=TE15+5ST&requestID=58baa5a96cdeb&state=declined&requestMerchantID=101381&processMerchantID=101381&xref=17030411PK31KJ53KD50VZG&paymentMethod=card&cardExpiryDate=1215&transactionID=15428278&avscv2ResponseCode=222100&avscv2ResponseMessage=ALL+MATCH&avscv2AuthEntity=merchant+host&cv2Check=matched&addressCheck=matched&postcodeCheck=matched&cardNumberMask=401200%2A%2A%2A%2A%2A%2A1112&cardType=Visa+Credit&cardTypeCode=VC&cardScheme=Visa+&cardSchemeCode=VC&cardIssuer=Unknown&cardIssuerCountry=Unknown&cardIssuerCountryCode=XXX&vcsResponseCode=0&vcsResponseMessage=Success+-+no+velocity+check+rules+applied&currencyExponent=2&timestamp=2017-03-04+11%3A31%3A53&signature=6fedb6cabaf68fca430ac84b7ee1e1f3382b84c160d11ca588003dd65a4a3e4f2d4caa185aa5fdf595bd82bcb7e8485f77072ead07fc6021ab766c46b5000cbb
     http_version: 
-  recorded_at: Wed, 18 Jan 2017 20:57:55 GMT
+  recorded_at: Sat, 04 Mar 2017 11:31:51 GMT
 recorded_with: VCR 3.0.3

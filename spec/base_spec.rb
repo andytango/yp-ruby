@@ -6,10 +6,9 @@ describe Yp::Base do
     {
       merchantID: '101381',
       action: 'SALE',
-      type: 1,
       countryCode: 826,
       currencyCode:  826,
-      amount:  1001,
+      amount:  TestAmounts.accepted,
       cardNumber:  '4012001037141112',
       cardExpiryMonth:  12,
       cardExpiryYear:  15,

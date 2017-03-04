@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative '../yp_helper'
 
 describe Yp::Response::Validator do
   Given(:signature) { 'Engine0Milk12Next' }
@@ -12,14 +11,14 @@ describe Yp::Response::Validator do
 
   context 'with invalid signing key' do
     Given(:params) { VALID_PARAMS.merge(signature: 'wrong') }
-    Given(:error_class) { Yp::Response::Validator::InvalidSignatureError }
+    Given(:error_class) { Yp::Response::InvalidSignatureError }
     When(:validator) { Yp::Response::Validator.new(params, signature) }
     Then { expect { validator.validate! }.to raise_error(error_class) }
   end
 
   context 'with missing signing key' do
     Given(:params) { VALID_PARAMS.reject { |k, _| k == :signature } }
-    Given(:error_class) { Yp::Response::Validator::MissingSignatureError }
+    Given(:error_class) { Yp::Response::MissingSignatureError }
     When(:validator) { Yp::Response::Validator.new(params, signature) }
     Then { expect { validator.validate! }.to raise_error(error_class) }
   end

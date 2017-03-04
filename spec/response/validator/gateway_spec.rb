@@ -6,13 +6,13 @@ describe Yp::Response::Validator::Gateway do
 
   context 'with missing response code' do
     Given(:params) { { responseMessage: 'foo' } }
-    Given(:error) { Yp::Response::Validator::MissingResponseCodeError }
+    Given(:error) { Yp::Response::MissingResponseCodeError }
     Then { expect { validator.validate! }.to raise_error(error) }
   end
 
   context 'with missing response message and request error response code' do
     Given(:params) { { responseStatus: '6' } }
-    Given(:error) { Yp::Response::Validator::MissingResponseMessageError }
+    Given(:error) { Yp::Response::MissingResponseMessageError }
     Then { expect { validator.validate! }.to raise_error(error) }
   end
 end
