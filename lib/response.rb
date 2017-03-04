@@ -1,4 +1,5 @@
 require 'response/parser'
+require 'response/error'
 require 'response/validator'
 
 module Yp
