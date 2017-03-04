@@ -10,5 +10,7 @@ module Yp
     class MissingSignatureError < ValidationError; end
     class MissingResponseCodeError < ValidationError; end
     class MissingResponseMessageError < ValidationError; end
+
+    class DeclinedError < StandardError; end
   end
 end
