@@ -1,3 +1,34 @@
+class TestAmounts
+  class << self
+
+    def accepted
+      rand(101..4999)
+    end
+
+    def referred
+      rand(5000..9999)
+    end
+
+    def declined
+      rand(10000..14999)
+    end
+
+    def declined_keep
+      rand(15000)
+    end
+
+    private
+
+    def rand(max)
+      random.rand(max)
+    end
+
+    def random
+      @random ||= Random.new
+    end
+  end
+end
+
 VALID_PARAMS = {
   merchantID: '101381',
   threeDSEnabled: 'N',

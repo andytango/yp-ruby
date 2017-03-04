@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative '../yp_helper'
 
 describe Yp::Response::Validator do
   Given(:signature) { 'Engine0Milk12Next' }
