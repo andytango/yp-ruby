@@ -47,9 +47,9 @@ describe Yp::Preauth do
 
     Given(:transaction) { params.merge({ amount: 10000 }) }
     Given(:preauth) { Yp::Preauth.new('Engine0Milk12Next', transaction) }
-    When(:result) { preauth.send! }
-    Then { result[:state] == 'declined' }
-    And { result[:merchantID] == transaction[:merchantID] }
+    Then do
+      expect { preauth.send! }.to raise_error(Yp::Response::DeclinedError)
+    end
   end
 
   describe 'card declined keep',
@@ -57,9 +57,9 @@ describe Yp::Preauth do
 
     Given(:transaction) { params.merge({ amount: 15000 }) }
     Given(:preauth) { Yp::Preauth.new('Engine0Milk12Next', transaction) }
-    When(:result) { preauth.send! }
-    Then { result[:state] == 'declined' }
-    And { result[:merchantID] == transaction[:merchantID] }
+    Then do
+      expect { preauth.send! }.to raise_error(Yp::Response::DeclinedError)
+    end
   end
 
 end
