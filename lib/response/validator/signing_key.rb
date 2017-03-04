@@ -10,7 +10,7 @@ module Yp
           @signature = signature
         end
 
-        def valid?
+        def validate!
           has_valid_signing_key? || (raise InvalidSignatureError)
         end
 

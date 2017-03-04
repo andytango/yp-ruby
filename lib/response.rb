@@ -10,13 +10,14 @@ module Yp
     end
 
     def parse_and_validate
-      parsed if valid?
+      validate!
+      parsed
     end
 
     private
 
-    def valid?
-      Validator.new(parsed, @signature).valid?
+    def validate!
+      Validator.new(parsed, @signature).validate!
     end
 
     def parsed

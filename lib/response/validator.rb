@@ -1,4 +1,5 @@
 require_relative 'validator/signing_key'
+require_relative 'validator/gateway'
 
 module Yp
   class Response
@@ -12,8 +13,8 @@ module Yp
         @signature = signature
       end
 
-      def valid?
-        SigningKey.new(@params, @signature).valid?
+      def validate!
+        SigningKey.new(@params, @signature).validate!
       end
 
     end
