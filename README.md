@@ -20,7 +20,86 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Different classes are available for the Gateway actions:
+
+ - Yp::Sale
+ - Yp::Preauth
+ - Yp::Verify
+ 
+If you need support for more actions, please [open an issue](https://github.com/andytango/yp-ruby/issues)!
+
+### Authentication and params
+ 
+You will need to pass in the correct parameters according to the Yorkshire Payments integration guide:
+
+```ruby
+
+signature_key = 'Engine0Milk12Next'
+
+params = {
+  merchantID: '101381',
+  countryCode: 826,
+  currencyCode:  826,
+  cardNumber:  '4012001037141112',
+  cardExpiryMonth:  12,
+  cardExpiryYear:  15,
+  cardCVV:  '083',
+  customerName:  'Yorkshire Payments',
+  customerEmail:  'support@yorkshirepayments.com',
+  customerAddress:  '16 Test Street',
+  customerPostCode:  'TE15 5ST',
+  orderRef:  'Test purchase'
+}
+
+transaction = Yp::Sale.new(signature, params)
+
+```
+
+The library will *not* validate your parameters before sending. This feature is coming soon.
+
+You pass in a callback method as a block, or access the response after the transaction is sent:
+
+```ruby
+
+transaction.send! do |response|
+  puts response.state # --> 'captured'
+end
+
+# OR:
+
+response = transaction.send!
+puts response.state # --> 'captured'
+
+```
+
+### Error Handling
+
+The client will raise a number of different types of errors:
+
+#### Validation Errors
+
+These occur if we could not perform any validation. This means the response is 
+malformed and can arise if you did not correctly sign your request:
+
+ - Yp::Response::InvalidSignatureError (potentially malicious)
+ - Yp::Response::MissingSignatureError
+ - Yp::Response::MissingResponseCodeError
+ 
+#### Gateway Errors
+
+These occur if, during validation, we found a Gateway error code. These come in 
+three different flavours:
+
+ - Yp::Response::MissingFieldError: _a field was missing in your request_
+ - Yp::Response::InvalidFieldError: _a field value was invalid in your request_
+ - Yp::Response::GatewayError: _the error could not be classified. The gateway's
+ error message will be supplied_
+ 
+#### Transaction Declined Error
+
+This occurs if the transaction has entered the **Declined** state:
+     
+  - Yp::Response::DeclinedError
 
 ## Development
 
@@ -30,7 +109,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/yp-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/andytango/yp-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
