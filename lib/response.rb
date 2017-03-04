@@ -1,6 +1,7 @@
 require 'response/parser'
 require 'response/error'
 require 'response/validator'
+require 'response/error_logger'
 
 module Yp
   class Response
@@ -18,7 +19,9 @@ module Yp
     private
 
     def validate!
-      Validator.new(parsed, @signature).validate!
+      ErrorLogger.new(@logger).log do
+        Validator.new(parsed, @signature).validate!
+      end
     end
 
     def parsed

@@ -25,7 +25,7 @@ describe Yp::Sale do
   end
 
   describe 'succeeds', vcr: { :cassette_name => 'sale_success' } do
-    Given(:transaction) { params.merge({ amount: 101 }) }
+    Given(:transaction) { params.merge({ amount: TestAmounts.accepted }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
     When(:result) { sale.send! }
     Then { result[:state] == 'captured' }
@@ -33,7 +33,7 @@ describe Yp::Sale do
   end
 
   describe 'card referred', vcr: { :cassette_name => 'sale_card_referred' } do
-    Given(:transaction) { params.merge({ amount: 5000 }) }
+    Given(:transaction) { params.merge({ amount: TestAmounts.referred }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
     When(:result) { sale.send! }
     Then { result[:state] == 'referred' }
@@ -41,20 +41,16 @@ describe Yp::Sale do
   end
 
   describe 'card declined', vcr: { :cassette_name => 'sale_card_declined' } do
-    Given(:transaction) { params.merge({ amount: 10000 }) }
+    Given(:transaction) { params.merge({ amount: TestAmounts.declined }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
-    When(:result) { sale.send! }
-    Then { result[:state] == 'declined' }
-    And { result[:merchantID] == transaction[:merchantID] }
+    Then { expect { sale.send! }.to raise_error(Yp::Response::DeclinedError) }
   end
 
   describe 'card declined keep',
            vcr: { :cassette_name => 'sale_card_declined_keep' } do
-    Given(:transaction) { params.merge({ amount: 15000 }) }
+    Given(:transaction) { params.merge({ amount: TestAmounts.declined_keep }) }
     Given(:sale) { Yp::Sale.new('Engine0Milk12Next', transaction) }
-    When(:result) { sale.send! }
-    Then { result[:state] == 'declined' }
-    And { result[:merchantID] == transaction[:merchantID] }
+    Then { expect { sale.send! }.to raise_error(Yp::Response::DeclinedError) }
   end
 
 end

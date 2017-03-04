@@ -12,10 +12,22 @@ module Yp
         info 'Response received', params
       end
 
+      def info(str, params=nil)
+        Yp.logger.info(format(str, params))
+      end
+
+      def error(str)
+        Yp.logger.error(format_message(str))
+      end
+
+      def fatal(str)
+        Yp.logger.fatal(format_message(str))
+      end
+
       private
 
-      def info(str, params=nil)
-        Yp.logger.info("#{format_message(str)} #{format_params(params)}")
+      def format(str, params)
+        "#{format_message(str)} #{format_params(params)}"
       end
 
       def format_message(str)
@@ -23,7 +35,7 @@ module Yp
       end
 
       def format_params(params)
-        " with params #{filter_card_params(params).to_s}"
+        " with params #{filter_card_params(params).to_s}" unless params.nil?
       end
 
       def filter_card_params(hash)
