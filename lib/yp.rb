@@ -18,6 +18,10 @@ module Yp
 
   class << self
     attr_accessor :logger
+
+    def data_files_path
+      File.join(File.dirname(File.expand_path(__FILE__)), '../data')
+    end
   end
 
   self.logger = NilLogger.new

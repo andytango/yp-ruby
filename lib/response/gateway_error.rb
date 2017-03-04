@@ -18,7 +18,7 @@ module Yp
           private
 
           def load_error_map
-            YAML.load(File.read('data/gateway_responses.yml'))
+            YAML.load(File.read("#{Yp.data_files_path}/gateway_responses.yml"))
           end
         end
 
