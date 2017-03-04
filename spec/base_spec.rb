@@ -36,7 +36,7 @@ describe Yp::Base do
 
   describe 'send', vcr: { :cassette_name => 'example_transaction_docs' } do
     Given(:transaction) { Yp::Base.new('Engine0Milk12Next', params) }
-    When(:result) { transaction.send }
+    When(:result) { transaction.send! }
     Then { result[:state] == 'captured' }
     And { result[:merchantID] == params[:merchantID] }
   end

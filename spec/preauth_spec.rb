@@ -27,7 +27,7 @@ describe Yp::Preauth do
   describe 'succeeds', vcr: { :cassette_name => 'preauth_success' } do
     Given(:transaction) { params.merge({ amount: 101 }) }
     Given(:preauth) { Yp::Preauth.new('Engine0Milk12Next', transaction) }
-    When(:result) { preauth.send }
+    When(:result) { preauth.send! }
     Then { result[:state] == 'reversed' }
     And { result[:merchantID] == transaction[:merchantID] }
   end
@@ -37,7 +37,7 @@ describe Yp::Preauth do
 
     Given(:transaction) { params.merge({ amount: 5000 }) }
     Given(:preauth) { Yp::Preauth.new('Engine0Milk12Next', transaction) }
-    When(:result) { preauth.send }
+    When(:result) { preauth.send! }
     Then { result[:state] == 'referred' }
     And { result[:merchantID] == transaction[:merchantID] }
   end
@@ -47,7 +47,7 @@ describe Yp::Preauth do
 
     Given(:transaction) { params.merge({ amount: 10000 }) }
     Given(:preauth) { Yp::Preauth.new('Engine0Milk12Next', transaction) }
-    When(:result) { preauth.send }
+    When(:result) { preauth.send! }
     Then { result[:state] == 'declined' }
     And { result[:merchantID] == transaction[:merchantID] }
   end
@@ -57,7 +57,7 @@ describe Yp::Preauth do
 
     Given(:transaction) { params.merge({ amount: 15000 }) }
     Given(:preauth) { Yp::Preauth.new('Engine0Milk12Next', transaction) }
-    When(:result) { preauth.send }
+    When(:result) { preauth.send! }
     Then { result[:state] == 'declined' }
     And { result[:merchantID] == transaction[:merchantID] }
   end

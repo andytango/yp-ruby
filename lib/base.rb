@@ -17,7 +17,7 @@ module Yp
       @signature_key = signature_key
     end
 
-    def send
+    def send!
       if block_given?
         RestClient.post(URL, body) do |response|
           yield(parse_and_validate response)

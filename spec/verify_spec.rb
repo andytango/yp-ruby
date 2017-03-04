@@ -36,7 +36,7 @@ describe Yp::Verify do
     Given(:verify) do
       Yp::Verify.new('Engine0Milk12Next', transaction)
     end
-    When(:result) { verify.send }
+    When(:result) { verify.send! }
     Then { result[:state] == 'verified' }
     And { result[:merchantID] == transaction[:merchantID] }
   end
